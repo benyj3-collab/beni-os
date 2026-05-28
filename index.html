@@ -16,7 +16,6 @@
 html,body{height:100%;overscroll-behavior:none}
 body{background:var(--bg);color:var(--tp);font-family:'Noto Sans Hebrew',sans-serif;max-width:430px;margin:0 auto;overflow-x:hidden;padding-top:var(--st)}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(41,121,255,0.07),transparent 70%),radial-gradient(ellipse 40% 30% at 80% 80%,rgba(0,229,255,0.04),transparent 60%)}
-/* SETUP */
 .setup{position:fixed;inset:0;z-index:500;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;gap:18px}
 .setup.hidden{display:none}
 .setup-logo{width:72px;height:72px;border-radius:50%;background:linear-gradient(145deg,#1a2540,#080f1e);border:1px solid rgba(41,121,255,0.3);box-shadow:0 0 40px rgba(41,121,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px}
@@ -33,20 +32,18 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .setup-btn{width:100%;height:50px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--blue),#1565c0);color:#fff;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;box-shadow:0 4px 20px rgba(41,121,255,0.3);transition:all .15s}
 .setup-btn:active{transform:scale(0.98)}
 .setup-sec{font-size:11px;color:var(--td);text-align:center}
-/* AI THINKING */
 .ai-think{position:fixed;inset:0;z-index:400;background:rgba(8,10,15,0.88);backdrop-filter:blur(12px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;opacity:0;pointer-events:none;transition:opacity .3s}
 .ai-think.show{opacity:1;pointer-events:all}
 .ai-orb{width:76px;height:76px;border-radius:50%;background:radial-gradient(circle at 40% 35%,rgba(41,121,255,0.3),rgba(0,229,255,0.1));border:1px solid rgba(41,121,255,0.4);display:flex;align-items:center;justify-content:center;animation:orb 1.2s ease-in-out infinite;box-shadow:0 0 40px rgba(41,121,255,0.3)}
 .ai-orb-in{width:36px;height:36px;border-radius:50%;background:rgba(41,121,255,0.2);animation:orb 1.2s ease-in-out infinite reverse}
 .ai-think-lbl{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;letter-spacing:3px;color:var(--blue);text-transform:uppercase;animation:fade 1.2s ease-in-out infinite}
 .ai-heard{font-size:13px;color:var(--ts);text-align:center;padding:0 40px;line-height:1.5;font-style:italic}
-/* AI RESULT */
 .ai-res-ov{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
 .ai-res-ov.show{opacity:1;pointer-events:all}
 .ai-res-card{width:100%;max-width:430px;background:var(--card);border:1px solid rgba(41,121,255,0.25);border-radius:24px 24px 0 0;padding:22px 22px calc(36px + var(--sb));transform:translateY(100%);transition:transform .4s cubic-bezier(0.16,1,0.3,1)}
 .ai-res-ov.show .ai-res-card{transform:translateY(0)}
 .handle{width:36px;height:3px;border-radius:2px;background:var(--md);margin:0 auto 18px}
-.ai-res-hdr{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.ai-res-hdr{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
 .ai-badge{background:linear-gradient(135deg,rgba(41,121,255,0.2),rgba(0,229,255,0.1));border:1px solid rgba(41,121,255,0.3);border-radius:8px;padding:3px 10px;font-family:'Rajdhani',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;color:var(--cyan);text-transform:uppercase}
 .ai-free-badge{background:rgba(0,201,167,0.1);border:1px solid rgba(0,201,167,0.2);border-radius:8px;padding:3px 8px;font-family:'Rajdhani',sans-serif;font-size:9px;font-weight:700;letter-spacing:1px;color:var(--teal)}
 .alarm-badge{background:rgba(255,196,0,0.1);border:1px solid rgba(255,196,0,0.25);border-radius:8px;padding:3px 8px;font-family:'Rajdhani',sans-serif;font-size:9px;font-weight:700;letter-spacing:1px;color:var(--amber);display:none}
@@ -58,16 +55,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .ai-val{font-size:13px;color:var(--tp);text-align:right;line-height:1.4}
 .ai-tag-val{font-family:'Rajdhani',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;padding:2px 10px;border-radius:6px;text-transform:uppercase}
 .ai-div{height:1px;background:var(--border)}
-.ai-alarm-row{background:rgba(255,196,0,0.07);border:1px solid rgba(255,196,0,0.2);border-radius:10px;padding:10px 12px;display:none;align-items:center;gap:10px}
+.ai-alarm-row{background:rgba(255,196,0,0.07);border:1px solid rgba(255,196,0,0.2);border-radius:10px;padding:10px 12px;display:none;align-items:center;gap:10px;margin-bottom:10px}
 .ai-alarm-row.show{display:flex}
-.ai-alarm-time{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:var(--amber)}
-.ai-alarm-label{font-size:12px;color:var(--ts)}
 .ai-actions{display:flex;gap:10px}
 .ai-btn{flex:1;height:46px;border-radius:13px;border:none;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .15s}
 .ai-btn-x{background:var(--bg2);color:var(--ts);border:1px solid var(--border)}
 .ai-btn-ok{background:linear-gradient(135deg,var(--blue),#1565c0);color:#fff;box-shadow:0 4px 20px rgba(41,121,255,0.25)}
 .ai-btn-ok:active{transform:scale(0.97)}
-/* TOP BAR */
 .topbar{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:16px 20px 12px;background:linear-gradient(to bottom,var(--bg) 70%,transparent)}
 .tg{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:600;letter-spacing:3px;color:var(--blue);text-transform:uppercase;display:block}
 .tn{font-size:21px;font-weight:500;font-family:'Rajdhani',sans-serif}
@@ -83,10 +77,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .ai-pill.on .ai-dot{background:var(--teal)}.ai-pill.off .ai-dot{background:var(--red)}
 .ai-txt{font-family:'Rajdhani',sans-serif;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
 .ai-pill.on .ai-txt{color:var(--teal)}.ai-pill.off .ai-txt{color:var(--red)}
-/* SCREENS */
 .screen{display:none;padding:0 18px 130px;position:relative;z-index:1}
 .screen.active{display:block}
-/* RECORD */
 .rzone{display:flex;flex-direction:column;align-items:center;padding:26px 0 26px;gap:16px}
 .rglow{position:relative;width:200px;height:200px;display:flex;align-items:center;justify-content:center}
 .rglow::before{content:'';position:absolute;inset:-28px;border-radius:50%;background:radial-gradient(circle,rgba(41,121,255,0.28),transparent 70%);animation:breathe 3s ease-in-out infinite}
@@ -110,21 +102,15 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .tsend{width:44px;height:44px;border-radius:12px;border:1px solid rgba(41,121,255,0.25);background:rgba(41,121,255,0.15);color:var(--blue);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
 .tsend:active{background:rgba(41,121,255,0.3)}
 .rhint{font-size:11px;color:var(--td);text-align:center;padding:0 16px;line-height:1.6}
-/* SECTION */
 .sec-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding:0 2px}
 .sec-ttl{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;color:var(--mm);text-transform:uppercase}
 .sec-cnt{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:600;color:var(--red);background:rgba(255,61,87,0.1);border:1px solid rgba(255,61,87,0.2);border-radius:10px;padding:1px 8px}
-/* REMINDER ROW */
 .reminder-row{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:14px}
 .reminder-row.hidden{display:none}
-.reminder-left{display:flex;align-items:center;gap:10px}
-.reminder-text{font-size:12px;color:var(--ts);line-height:1.4}
-.reminder-title{font-size:13px;font-weight:500;color:var(--tp);margin-bottom:2px}
 .toggle{width:44px;height:24px;border-radius:12px;background:var(--md);border:none;cursor:pointer;position:relative;transition:background .2s;flex-shrink:0}
 .toggle.on{background:var(--teal)}
 .toggle::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,0.3)}
 .toggle.on::after{transform:translateX(20px)}
-/* CARDS */
 .cards{display:flex;flex-direction:column;gap:10px}
 .card{position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(28,35,52,0.95),rgba(17,22,32,0.98));border:1px solid var(--border);border-radius:14px;padding:16px 18px;cursor:pointer;transition:transform .2s,border-color .2s,opacity .3s;animation:cin .4s ease both}
 .card::after{content:'';position:absolute;top:0;left:12px;right:12px;height:1px;background:linear-gradient(90deg,transparent,rgba(200,208,220,0.25) 50%,transparent)}
@@ -140,7 +126,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .tf{color:#ffd080;background:rgba(255,196,0,0.1);border:1px solid rgba(255,196,0,0.2)}
 .tp2{color:#80ffce;background:rgba(0,201,167,0.1);border:1px solid rgba(0,201,167,0.2)}
 .ti{color:#d4a0ff;background:rgba(160,80,255,0.1);border:1px solid rgba(160,80,255,0.2)}
-.ctime{font-family:'Rajdhani',sans-serif;font-size:10px;color:var(--td);letter-spacing:1px;display:flex;align-items:center;gap:4px}
+.ctime{font-family:'Rajdhani',sans-serif;font-size:10px;color:var(--td);letter-spacing:1px}
 .ctime-alarm{color:var(--amber)}
 .ctitle{font-size:15px;font-weight:500;color:var(--tp);line-height:1.4;margin-bottom:10px;padding-right:6px}
 .cbot{display:flex;justify-content:space-between;align-items:center}
@@ -158,26 +144,20 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .empty-ico{font-size:40px}
 .empty-t{font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:600;color:var(--ts);letter-spacing:1px}
 .empty-s{font-size:12px;color:var(--td)}
-/* BUSINESS SCREEN */
 .biz-header{padding:20px 0 16px}
-.biz-title{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;letter-spacing:1px;color:var(--tp)}
+.biz-title{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;letter-spacing:1px}
 .biz-sub{font-size:12px;color:var(--ts);margin-top:4px}
 .supplier-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
 .supplier-card{background:linear-gradient(135deg,rgba(28,35,52,0.95),rgba(17,22,32,0.98));border:1px solid var(--border);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px}
-.supplier-card::after{content:'';position:absolute;top:0;left:12px;right:12px;height:1px}
-.supplier-av{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#1a2540,var(--md));display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:var(--ml);font-family:'Rajdhani',sans-serif;border:1px solid rgba(200,208,220,0.15);flex-shrink:0}
+.supplier-av{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#1a2540,var(--md));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:var(--ml);font-family:'Rajdhani',sans-serif;border:1px solid rgba(200,208,220,0.15);flex-shrink:0}
 .supplier-info{flex:1}
 .supplier-name{font-size:14px;font-weight:500;color:var(--tp);margin-bottom:3px}
 .supplier-detail{font-size:11px;color:var(--ts)}
 .supplier-actions{display:flex;gap:6px}
 .sbtn{width:34px;height:34px;border-radius:10px;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;transition:all .15s}
 .sbtn-wa{background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.2)}
-.sbtn-wa:active{background:rgba(37,211,102,0.2)}
 .sbtn-call{background:rgba(41,121,255,0.1);border:1px solid rgba(41,121,255,0.2)}
-.sbtn-call:active{background:rgba(41,121,255,0.2)}
 .add-supplier-btn{width:100%;height:46px;border-radius:13px;border:1px dashed rgba(41,121,255,0.3);background:rgba(41,121,255,0.05);color:var(--blue);font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .15s;margin-bottom:20px}
-.add-supplier-btn:active{background:rgba(41,121,255,0.1)}
-/* NAV */
 .bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:linear-gradient(to top,var(--bg) 80%,transparent);padding:12px 24px calc(28px + var(--sb));z-index:100}
 .navi{background:rgba(13,16,24,0.97);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:22px;display:grid;grid-template-columns:repeat(4,1fr);padding:4px;box-shadow:0 -1px 0 rgba(255,255,255,0.03),0 20px 60px rgba(0,0,0,0.5)}
 .ni{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 0;border-radius:18px;cursor:pointer;transition:all .2s;position:relative}
@@ -189,7 +169,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .ni.active .nico svg *{stroke:var(--blue)}.ni:not(.active) .nico svg *{stroke:var(--td)}
 .ndot{position:absolute;bottom:6px;width:3px;height:3px;border-radius:50%;background:var(--blue);display:none}
 .ni.active .ndot{display:block}
-/* CONFIRM */
 .cov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
 .cov.show{opacity:1;pointer-events:all}
 .ccard{width:100%;max-width:430px;background:var(--card);border:1px solid rgba(41,121,255,0.25);border-radius:24px 24px 0 0;padding:28px 24px calc(48px + var(--sb));transform:translateY(100%);transition:transform .35s cubic-bezier(0.16,1,0.3,1)}
@@ -201,7 +180,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .cbtn2{flex:1;height:48px;border-radius:13px;border:none;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .15s}
 .cancel{background:var(--bg2);color:var(--ts);border:1px solid var(--border)}
 .send{background:linear-gradient(135deg,#25d366,#1da951);color:#fff;box-shadow:0 4px 20px rgba(37,211,102,0.25)}
-/* TOAST */
 .toast{position:fixed;top:76px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--card);border:1px solid rgba(41,121,255,0.3);border-radius:14px;padding:12px 18px;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(0,0,0,0.4);z-index:600;opacity:0;transition:all .3s cubic-bezier(0.16,1,0.3,1);pointer-events:none;min-width:240px;max-width:360px}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .ticon{font-size:20px;flex-shrink:0}
@@ -221,16 +199,16 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 <body>
 
 <div class="setup" id="setup">
-  <div class="setup-logo">⚡</div>
+  <div class="setup-logo">🧠</div>
   <div class="setup-title">BENI OS</div>
-  <p class="setup-sub">חיבור AI חינמי דרך Groq<br>מהיר, עברית מלאה, ללא עלות</p>
+  <p class="setup-sub">AI חינמי — עובד מכל מקום<br>טלפון, מחשב, כל דפדפן</p>
   <div class="setup-box">
     <div style="display:flex;justify-content:space-between;align-items:center">
-      <span class="setup-lbl">Groq API Key</span>
+      <span class="setup-lbl">OpenRouter API Key</span>
       <span class="setup-free">✓ חינמי</span>
     </div>
-    <input class="setup-inp" id="apiKey" type="password" placeholder="gsk_..." autocomplete="off" spellcheck="false">
-    <p class="setup-hint">קבל מפתח ב־<a href="https://console.groq.com" target="_blank">console.groq.com</a><br>← API Keys ← Create API Key</p>
+    <input class="setup-inp" id="apiKey" type="password" placeholder="sk-or-v1-..." autocomplete="off" spellcheck="false">
+    <p class="setup-hint">קבל מפתח ב־<a href="https://openrouter.ai/keys" target="_blank">openrouter.ai/keys</a><br>← לחץ "Create Key" — חינמי לגמרי</p>
   </div>
   <button class="setup-btn" onclick="saveKey()">התחבר ל-AI ←</button>
   <div class="setup-sec">🔒 נשמר רק במכשיר שלך</div>
@@ -238,7 +216,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 
 <div class="ai-think" id="aiThink">
   <div class="ai-orb"><div class="ai-orb-in"></div></div>
-  <div class="ai-think-lbl">⚡ Groq מעבד...</div>
+  <div class="ai-think-lbl">🧠 מעבד בעברית...</div>
   <div class="ai-heard" id="aiHeard"></div>
 </div>
 
@@ -246,10 +224,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
   <div class="ai-res-card">
     <div class="handle"></div>
     <div class="ai-res-hdr">
-      <span class="ai-badge">AI ✦ Groq</span>
+      <span class="ai-badge">AI ✦ Beni OS</span>
       <span class="ai-free-badge">חינמי</span>
       <span class="alarm-badge" id="alarmBadge">⏰ התראה</span>
-      <span class="ai-res-title">מה הבנתי</span>
     </div>
     <div class="ai-box">
       <div class="ai-row"><span class="ai-lbl">משימה</span><span class="ai-val" id="rTask">—</span></div>
@@ -262,12 +239,11 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
       <div class="ai-div"></div>
       <div class="ai-row"><span class="ai-lbl">הצעת הודעה</span><span class="ai-val" id="rMsg" style="font-size:12px;color:var(--ts)">—</span></div>
     </div>
-    <!-- ALARM ROW -->
     <div class="ai-alarm-row" id="alarmRow">
       <span style="font-size:20px">⏰</span>
       <div>
-        <div style="font-size:11px;color:var(--ts);margin-bottom:2px">התראה מוגדרת ל:</div>
-        <div class="ai-alarm-time" id="alarmTimeDisplay">—</div>
+        <div style="font-size:11px;color:var(--ts);margin-bottom:2px">התראה תצלצל ב:</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--amber)" id="alarmTimeDisplay">—</div>
       </div>
     </div>
     <div class="ai-actions" style="margin-top:14px">
@@ -285,12 +261,12 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
   <div class="topbar-right">
     <div class="save-ind" id="saveInd"><span class="save-dot"></span><span class="save-txt">שומר...</span></div>
     <div class="ai-pill on" id="pill" onclick="showSetup()">
-      <span class="ai-dot"></span><span class="ai-txt" id="pillTxt">Groq חינמי</span>
+      <span class="ai-dot"></span><span class="ai-txt" id="pillTxt">AI פעיל</span>
     </div>
   </div>
 </header>
 
-<!-- HOME SCREEN -->
+<!-- HOME -->
 <div class="screen active" id="screen-home">
   <div class="rzone">
     <div class="rglow">
@@ -316,18 +292,16 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
     </div>
     <p class="rhint">אמור שעה ← יוגדר alarm אוטומטי ⏰</p>
   </div>
-
   <div class="reminder-row hidden" id="reminderRow">
-    <div class="reminder-left">
+    <div style="display:flex;align-items:center;gap:10px">
       <span style="font-size:18px">⏰</span>
-      <div class="reminder-text">
-        <div class="reminder-title">תזכורות אוטומטיות</div>
-        כל 30 דקות על משימות פתוחות
+      <div>
+        <div style="font-size:13px;font-weight:500;color:var(--tp);margin-bottom:2px">תזכורות אוטומטיות</div>
+        <div style="font-size:11px;color:var(--ts)">כל 30 דקות על משימות פתוחות</div>
       </div>
     </div>
     <button class="toggle on" id="reminderToggle" onclick="toggleReminder()"></button>
   </div>
-
   <div class="sec-hdr">
     <span class="sec-ttl">משימות דחופות</span>
     <span class="sec-cnt" id="cnt">0 ממתינות</span>
@@ -340,34 +314,20 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
   </div>
 </div>
 
-<!-- BUSINESS SCREEN -->
+<!-- BUSINESS -->
 <div class="screen" id="screen-business">
   <div class="biz-header">
     <div class="biz-title">🏢 מסך עסקי</div>
     <div class="biz-sub">ספקים ואנשי קשר עסקיים</div>
   </div>
-
-  <div class="sec-hdr">
-    <span class="sec-ttl">משימות עסקיות</span>
-    <span class="sec-cnt" id="biz-cnt">0 ממתינות</span>
-  </div>
+  <div class="sec-hdr"><span class="sec-ttl">משימות עסקיות</span><span class="sec-cnt" id="biz-cnt">0</span></div>
   <div class="cards" id="biz-cards"></div>
-  <div class="empty" id="biz-empty">
-    <div class="empty-ico">📋</div>
-    <div class="empty-t">אין משימות עסקיות</div>
-    <div class="empty-s">הוסף משימות עסקיות מהמסך הראשי</div>
-  </div>
-
-  <div class="sec-hdr" style="margin-top:24px">
-    <span class="sec-ttl">ספקים</span>
-  </div>
-  <div class="supplier-cards" id="supplierCards">
+  <div class="empty show" id="biz-empty"><div class="empty-ico">📋</div><div class="empty-t">אין משימות עסקיות</div><div class="empty-s">הוסף ממסך הבית</div></div>
+  <div class="sec-hdr" style="margin-top:24px"><span class="sec-ttl">ספקים</span></div>
+  <div class="supplier-cards">
     <div class="supplier-card">
       <div class="supplier-av">אס</div>
-      <div class="supplier-info">
-        <div class="supplier-name">אסבית מוצרי חלב</div>
-        <div class="supplier-detail">ספק חלב ומוצרי חלב</div>
-      </div>
+      <div class="supplier-info"><div class="supplier-name">אסבית מוצרי חלב</div><div class="supplier-detail">ספק חלב ומוצרי חלב</div></div>
       <div class="supplier-actions">
         <button class="sbtn sbtn-wa" onclick="quickWA('אסבית')">💬</button>
         <button class="sbtn sbtn-call" onclick="quickCall('050-0000000')">📞</button>
@@ -375,58 +335,31 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
     </div>
     <div class="supplier-card">
       <div class="supplier-av">רח</div>
-      <div class="supplier-info">
-        <div class="supplier-name">רו"ח דוד לוי</div>
-        <div class="supplier-detail">רואה חשבון</div>
-      </div>
+      <div class="supplier-info"><div class="supplier-name">רו"ח דוד לוי</div><div class="supplier-detail">רואה חשבון</div></div>
       <div class="supplier-actions">
         <button class="sbtn sbtn-wa" onclick="quickWA('דוד לוי')">💬</button>
         <button class="sbtn sbtn-call" onclick="quickCall('050-0000001')">📞</button>
-      </div>
-    </div>
-    <div class="supplier-card">
-      <div class="supplier-av">בנ</div>
-      <div class="supplier-info">
-        <div class="supplier-name">בנק הפועלים</div>
-        <div class="supplier-detail">בנק עסקי</div>
-      </div>
-      <div class="supplier-actions">
-        <button class="sbtn sbtn-call" onclick="quickCall('*6100')">📞</button>
       </div>
     </div>
   </div>
   <button class="add-supplier-btn" onclick="toast('🔜','בקרוב','הוספת ספק בגרסה הבאה')">+ הוסף ספק</button>
 </div>
 
-<!-- PERSONAL SCREEN -->
+<!-- PERSONAL -->
 <div class="screen" id="screen-personal">
-  <div class="biz-header">
-    <div class="biz-title">🤍 אישי</div>
-    <div class="biz-sub">משימות אישיות ומשפחתיות</div>
-  </div>
-  <div class="sec-hdr">
-    <span class="sec-ttl">משימות אישיות</span>
-    <span class="sec-cnt" id="per-cnt">0 ממתינות</span>
-  </div>
+  <div class="biz-header"><div class="biz-title">🤍 אישי</div><div class="biz-sub">משימות אישיות ומשפחתיות</div></div>
+  <div class="sec-hdr"><span class="sec-ttl">משימות אישיות</span><span class="sec-cnt" id="per-cnt">0</span></div>
   <div class="cards" id="per-cards"></div>
-  <div class="empty" id="per-empty">
-    <div class="empty-ico">🏠</div>
-    <div class="empty-t">אין משימות אישיות</div>
-    <div class="empty-s">הוסף משימות אישיות מהמסך הראשי</div>
-  </div>
+  <div class="empty show" id="per-empty"><div class="empty-ico">🏠</div><div class="empty-t">אין משימות אישיות</div><div class="empty-s">הוסף ממסך הבית</div></div>
 </div>
 
-<!-- FINANCE SCREEN -->
+<!-- FINANCE -->
 <div class="screen" id="screen-finance">
-  <div class="biz-header">
-    <div class="biz-title">💰 כספים</div>
-    <div class="biz-sub">בקרוב — מעקב חשבוניות ותשלומים</div>
-  </div>
+  <div class="biz-header"><div class="biz-title">💰 כספים</div><div class="biz-sub">בקרוב</div></div>
   <div style="display:flex;flex-direction:column;align-items:center;padding:40px 20px;gap:16px;text-align:center">
     <div style="font-size:50px">💰</div>
     <div style="font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:var(--ts);letter-spacing:1px">בקרוב</div>
     <div style="font-size:13px;color:var(--td);line-height:1.6">מסך כספים עם מעקב חשבוניות,<br>תשלומים ותזכורות פיננסיות</div>
-    <div class="sec-cnt" style="margin-top:8px">גרסה הבאה</div>
   </div>
 </div>
 
@@ -470,8 +403,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 </div>
 
 <script>
-// ══ STORAGE ══
-const SK='beni_tasks_v2', RK='beni_reminder_on';
+const SK='beni_tasks_v2',RK='beni_reminder_on';
+
 function saveTasks(){
   try{
     const data=Array.from(document.querySelectorAll('#cards .card')).map(c=>({
@@ -482,8 +415,7 @@ function saveTasks(){
       time:c.querySelector('.ctime').innerHTML,
       contact:c.querySelector('.cname').textContent,
       initials:c.querySelector('.cav').textContent,
-      waMsg:c.dataset.wamsg||'',
-      category:c.dataset.category||'business'
+      waMsg:c.dataset.wamsg||'',category:c.dataset.category||'business'
     }));
     localStorage.setItem(SK,JSON.stringify(data));
     const si=document.getElementById('saveInd');
@@ -496,8 +428,7 @@ function esc(s){return(s||'').replace(/'/g,"\\'");}
 function renderCard(t,prepend=false){
   const c=document.createElement('div');
   c.className='card '+t.priority;
-  c.dataset.id=t.id;
-  c.dataset.category=t.category||'business';
+  c.dataset.id=t.id;c.dataset.category=t.category||'business';
   if(t.waMsg)c.dataset.wamsg=t.waMsg;
   c.style.animationDelay='0s';
   const wa=t.waMsg?`<button class="cbtn bwa" onclick="showC('${esc(t.contact)}','${esc(t.waMsg)}')">WA</button>`:'';
@@ -508,101 +439,69 @@ function renderCard(t,prepend=false){
       <div class="cperson"><div class="cav">${t.initials}</div><span class="cname">${t.contact}</span></div>
       <div class="cacts">${wa}<button class="cbtn bdone" onclick="done(this)">✓ בוצע</button></div>
     </div>`;
-  // Add to main cards
   const cont=document.getElementById('cards');
   if(prepend)cont.prepend(c);else cont.appendChild(c);
-  // Also add to category screen
-  addToCategoryScreen(c.cloneNode(true), t.category||'business');
-  updateCategoryCounts();
+  // mirror to category screen
+  const clone=c.cloneNode(true);
+  clone.querySelector('.bdone').setAttribute('onclick','done(this)');
+  if(t.waMsg)clone.querySelector('.bwa').setAttribute('onclick',`showC('${esc(t.contact)}','${esc(t.waMsg)}')`);
+  let catId=null;
+  if(t.category==='business')catId='biz-cards';
+  else if(t.category==='personal')catId='per-cards';
+  if(catId){
+    if(prepend)document.getElementById(catId).prepend(clone);
+    else document.getElementById(catId).appendChild(clone);
+  }
+  updateCatCounts();
 }
 
-function addToCategoryScreen(cardClone, category){
-  let targetId = null;
-  if(category==='business') targetId='biz-cards';
-  else if(category==='personal') targetId='per-cards';
-  if(!targetId) return;
-  // Re-attach event handlers
-  const doneBtn=cardClone.querySelector('.bdone');
-  if(doneBtn) doneBtn.setAttribute('onclick','done(this)');
-  document.getElementById(targetId).prepend(cardClone);
+function updateCatCounts(){
+  document.getElementById('biz-cnt').textContent=document.getElementById('biz-cards').querySelectorAll('.card').length;
+  document.getElementById('per-cnt').textContent=document.getElementById('per-cards').querySelectorAll('.card').length;
+  const be=document.getElementById('biz-empty'),pe=document.getElementById('per-empty');
+  be.className=document.getElementById('biz-cards').querySelectorAll('.card').length===0?'empty show':'empty';
+  pe.className=document.getElementById('per-cards').querySelectorAll('.card').length===0?'empty show':'empty';
 }
 
-function updateCategoryCounts(){
-  document.getElementById('biz-cnt').textContent=document.getElementById('biz-cards').querySelectorAll('.card').length+' ממתינות';
-  document.getElementById('per-cnt').textContent=document.getElementById('per-cards').querySelectorAll('.card').length+' ממתינות';
-  const bizEmpty=document.getElementById('biz-empty');
-  const perEmpty=document.getElementById('per-empty');
-  bizEmpty.className=document.getElementById('biz-cards').querySelectorAll('.card').length===0?'empty show':'empty';
-  perEmpty.className=document.getElementById('per-cards').querySelectorAll('.card').length===0?'empty show':'empty';
-}
-
-// ══ ALARM SYSTEM ══
-function parseTimeFromText(timeStr){
-  if(!timeStr||timeStr==='ללא זמן') return null;
-  // Match patterns like "14:00", "14:30", "2:00", "שעה 14"
-  const m1=timeStr.match(/(\d{1,2}):(\d{2})/);
-  if(m1) return {h:parseInt(m1[1]),m:parseInt(m1[2])};
-  const m2=timeStr.match(/שעה\s*(\d{1,2})/);
-  if(m2) return {h:parseInt(m2[1]),m:0};
-  const m3=timeStr.match(/(\d{1,2})\s*בבוקר/);
-  if(m3) return {h:parseInt(m3[1]),m:0};
-  const m4=timeStr.match(/(\d{1,2})\s*בצהריים/);
-  if(m4) return {h:parseInt(m4[1])+12,m:0};
-  const m5=timeStr.match(/(\d{1,2})\s*אחה"צ/);
-  if(m5) return {h:parseInt(m5[1])+12,m:0};
+// ALARM
+function parseTime(s){
+  if(!s||s==='ללא זמן')return null;
+  const m1=s.match(/(\d{1,2}):(\d{2})/);if(m1)return{h:+m1[1],m:+m1[2]};
+  const m2=s.match(/שעה\s*(\d{1,2})/);if(m2)return{h:+m2[1],m:0};
   return null;
 }
-
-function scheduleAlarm(taskTitle, timeObj){
-  if(!timeObj) return;
-  if(Notification.permission!=='granted') return;
-  const now=new Date();
-  const alarm=new Date();
-  alarm.setHours(timeObj.h, timeObj.m, 0, 0);
-  if(alarm<=now) alarm.setDate(alarm.getDate()+1); // tomorrow if passed
-  const delay=alarm.getTime()-now.getTime();
+function scheduleAlarm(title,t){
+  if(!t||Notification.permission!=='granted')return;
+  const now=new Date(),alarm=new Date();
+  alarm.setHours(t.h,t.m,0,0);
+  if(alarm<=now)alarm.setDate(alarm.getDate()+1);
   setTimeout(()=>{
-    new Notification('⏰ Beni OS — תזכורת!',{
-      body: taskTitle,
-      icon:'./icon-192.png',
-      tag:'alarm-'+Date.now(),
-      requireInteraction:true,
-      vibrate:[300,100,300,100,300]
-    });
-    toast('⏰','התראה!',taskTitle);
-  }, delay);
-  return alarm;
+    new Notification('⏰ Beni OS',{body:title,icon:'./icon-192.png',requireInteraction:true,vibrate:[300,100,300]});
+    toast('⏰','התראה!',title);
+  },alarm-now);
 }
 
-// ══ NOTIFICATIONS ══
-let reminderInterval=null;
-let reminderOn=localStorage.getItem(RK)!=='off';
-
-function startReminders(){
-  if(reminderInterval)clearInterval(reminderInterval);
-  reminderInterval=setInterval(()=>{
-    if(!reminderOn)return;
+// NOTIFICATIONS
+let remInt=null,remOn=localStorage.getItem(RK)!=='off';
+function startRem(){
+  if(remInt)clearInterval(remInt);
+  remInt=setInterval(()=>{
+    if(!remOn)return;
     const n=document.querySelectorAll('#cards .card').length;
-    if(n>0&&Notification.permission==='granted'){
-      new Notification('⏰ Beni OS — תזכורת',{
-        body:'יש לך '+n+' משימ'+(n===1?'ה':'ות')+' פתוח'+(n===1?'ה':'ות'),
-        icon:'./icon-192.png',tag:'beni-reminder'
-      });
-    }
+    if(n>0&&Notification.permission==='granted')
+      new Notification('⏰ Beni OS',{body:'יש לך '+n+' משימות פתוחות',icon:'./icon-192.png',tag:'rem'});
   },30*60*1000);
 }
-
 function toggleReminder(){
-  reminderOn=!reminderOn;
-  const btn=document.getElementById('reminderToggle');
-  btn.className='toggle '+(reminderOn?'on':'');
-  localStorage.setItem(RK,reminderOn?'on':'off');
-  if(reminderOn){startReminders();toast('🔔','תזכורות פועלות','כל 30 דקות');}
-  else{if(reminderInterval)clearInterval(reminderInterval);toast('🔕','תזכורות כבויות','');}
+  remOn=!remOn;
+  document.getElementById('reminderToggle').className='toggle '+(remOn?'on':'');
+  localStorage.setItem(RK,remOn?'on':'off');
+  if(remOn){startRem();toast('🔔','תזכורות פועלות','כל 30 דקות');}
+  else{if(remInt)clearInterval(remInt);toast('🔕','כבוי','');}
 }
 
-// ══ INIT ══
-let KEY=localStorage.getItem('beni_groq_key')||'';
+// INIT
+let KEY=localStorage.getItem('beni_or_key')||'';
 let wa={to:'',msg:''},rec=false,recog=null,pending=null;
 
 (function init(){
@@ -612,69 +511,76 @@ let wa={to:'',msg:''},rec=false,recog=null,pending=null;
   document.getElementById('greet').textContent=h<12?'בוקר טוב':h<17?'צהריים טובים':'ערב טוב';
   if(Notification.permission==='granted'){
     document.getElementById('reminderRow').classList.remove('hidden');
-    if(reminderOn)startReminders();
-    document.getElementById('reminderToggle').className='toggle '+(reminderOn?'on':'');
+    document.getElementById('reminderToggle').className='toggle '+(remOn?'on':'');
+    if(remOn)startRem();
   }
   const saved=loadTasks();
-  if(saved&&saved.length>0){
-    saved.forEach(t=>renderCard(t));
-    updCnt();toast('💾','ברוך הבא!',saved.length+' משימות נטענו');
-  }else{
+  if(saved&&saved.length>0){saved.forEach(t=>renderCard(t));updCnt();toast('💾','ברוך הבא!',saved.length+' משימות נטענו');}
+  else{
     [{id:'d1',title:'לשלוח הצעת מחיר לאסבית על אספקת חלב',tagClass:'tb',tagLabel:'עסקי',priority:'urgent',time:'<span class="overdue"><span class="od"></span>פגר ב-2ש׳</span>',contact:'אסבית מוצרי חלב',initials:'אס',waMsg:'שלום, רציתי לשלוח הצעת מחיר על אספקת חלב. מחכה לאישורך.',category:'business'},
-     {id:'d2',title:'לאשר העברה בנקאית לספק — דדליין 14:00',tagClass:'tf',tagLabel:'כספים',priority:'warning',time:'היום 14:00',contact:'בנק הפועלים',initials:'בנ',waMsg:'',category:'finance'},
-     {id:'d3',title:'להחזיר שיחה לרואה החשבון לגבי דו"ח שנתי',tagClass:'tp2',tagLabel:'אישי',priority:'normal',time:'הערב',contact:'רו"ח דוד לוי',initials:'רח',waMsg:'',category:'personal'}
+     {id:'d2',title:'לאשר העברה בנקאית לספק',tagClass:'tf',tagLabel:'כספים',priority:'warning',time:'היום 14:00',contact:'בנק הפועלים',initials:'בנ',waMsg:'',category:'finance'},
+     {id:'d3',title:'להחזיר שיחה לרואה החשבון',tagClass:'tp2',tagLabel:'אישי',priority:'normal',time:'הערב',contact:'רו"ח דוד לוי',initials:'רח',waMsg:'',category:'personal'}
     ].forEach(t=>renderCard(t));
     saveTasks();updCnt();
   }
   if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
-  // Request notification permission on first load
   if('Notification' in window&&Notification.permission==='default'){
-    setTimeout(()=>{
-      Notification.requestPermission().then(p=>{
-        if(p==='granted'){document.getElementById('reminderRow').classList.remove('hidden');startReminders();toast('🔔','התראות פעילות!','');}
-      });
-    },3000);
+    setTimeout(()=>Notification.requestPermission().then(p=>{
+      if(p==='granted'){document.getElementById('reminderRow').classList.remove('hidden');startRem();toast('🔔','התראות פעילות!','');}
+    }),3000);
   }
 })();
 
-// ══ KEY ══
-function pill(on){const p=document.getElementById('pill');p.className='ai-pill '+(on?'on':'off');document.getElementById('pillTxt').textContent=on?'Groq חינמי':'AI כבוי';}
+// KEY
+function pill(on){const p=document.getElementById('pill');p.className='ai-pill '+(on?'on':'off');document.getElementById('pillTxt').textContent=on?'AI פעיל':'AI כבוי';}
 function showSetup(){document.getElementById('apiKey').value=KEY;document.getElementById('setup').classList.remove('hidden');}
 function saveKey(){
   const k=document.getElementById('apiKey').value.trim();
-  if(!k.startsWith('gsk_')){toast('❌','שגיאה','המפתח חייב להתחיל ב-gsk_');return;}
-  KEY=k;localStorage.setItem('beni_groq_key',k);
+  if(!k.startsWith('sk-or-')){toast('❌','שגיאה','המפתח חייב להתחיל ב-sk-or-');return;}
+  KEY=k;localStorage.setItem('beni_or_key',k);
   document.getElementById('setup').classList.add('hidden');
-  pill(true);toast('⚡','Groq מחובר!','AI חינמי מוכן לעברית');
+  pill(true);toast('🧠','AI מחובר!','עובד מכל מקום');
 }
 
-// ══ GROQ ══
-async function groq(text){
+// AI — OpenRouter
+async function callAI(text){
   if(!KEY){showSetup();return;}
   document.getElementById('aiHeard').textContent='"'+text+'"';
   document.getElementById('aiThink').classList.add('show');
   const prompt=`אתה עוזר אישי לבעל עסק ישראלי בשם בני.
 קלט: "${text}"
 החזר JSON בלבד ללא שום טקסט נוסף, בלי backticks:
-{"task":"תיאור קצר בעברית","category":"business|finance|personal|idea","priority":"urgent|warning|normal","contact":"שם או null","whatsapp_msg":"הצעת הודעה קצרה בעברית או null","time":"שעה מדויקת אם הוזכרה (למשל 14:00) או ללא זמן"}
+{"task":"תיאור קצר בעברית","category":"business|finance|personal|idea","priority":"urgent|warning|normal","contact":"שם או null","whatsapp_msg":"הצעת הודעה קצרה בעברית או null","time":"שעה בפורמט HH:MM אם הוזכרה, אחרת ללא זמן"}
 business=ספקים/לקוחות/עסק, finance=כסף/תשלום/בנק, personal=משפחה/בית/אישי, idea=רעיון
-urgent=דחוף/מיד/היום, warning=מחר/השבוע, normal=שאר
-חשוב: אם הוזכרה שעה ספציפית, החזר אותה בפורמט HH:MM בשדה time`;
+urgent=דחוף/מיד/היום, warning=מחר/השבוע, normal=שאר`;
   try{
-    const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{
+    const r=await fetch('https://openrouter.ai/api/v1/chat/completions',{
       method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer '+KEY},
-      body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'user',content:prompt}],max_tokens:400,temperature:0.1})
+      headers:{
+        'Content-Type':'application/json',
+        'Authorization':'Bearer '+KEY,
+        'HTTP-Referer':'https://benyj3-collab.github.io',
+        'X-Title':'Beni OS'
+      },
+      body:JSON.stringify({
+        model:'meta-llama/llama-3.3-70b-instruct:free',
+        messages:[{role:'user',content:prompt}],
+        max_tokens:400
+      })
     });
-    if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Groq error');}
+    if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'שגיאה');}
     const d=await r.json();
-    const p=JSON.parse(d.choices[0].message.content.trim().replace(/```json|```/g,'').trim());
+    const raw=d.choices[0].message.content.trim().replace(/```json|```/g,'').trim();
+    const p=JSON.parse(raw);
     document.getElementById('aiThink').classList.remove('show');
     showRes(p);
   }catch(e){
     document.getElementById('aiThink').classList.remove('show');
-    if(e.message.includes('401')||e.message.includes('invalid')||e.message.includes('auth')){pill(false);showSetup();toast('❌','מפתח שגוי','בדוק ב-console.groq.com');}
-    else toast('⚠️','שגיאה',e.message.slice(0,50));
+    if(e.message.includes('401')||e.message.includes('auth')||e.message.includes('key')){
+      pill(false);showSetup();toast('❌','מפתח שגוי','בדוק ב-openrouter.ai');
+    }else{
+      toast('⚠️','שגיאה',e.message.slice(0,60));
+    }
   }
 }
 
@@ -689,12 +595,10 @@ function showRes(p){
   document.getElementById('rPri').textContent=PM[p.priority]||'🟢 רגיל';
   document.getElementById('rContact').textContent=p.contact||'לא זוהה';
   document.getElementById('rMsg').textContent=p.whatsapp_msg||'—';
-  // Check for alarm time
-  const timeObj=parseTimeFromText(p.time);
-  if(timeObj){
-    const hh=String(timeObj.h).padStart(2,'0');
-    const mm=String(timeObj.m).padStart(2,'0');
-    document.getElementById('alarmTimeDisplay').textContent=hh+':'+mm;
+  const to=parseTime(p.time);
+  if(to){
+    const ts=String(to.h).padStart(2,'0')+':'+String(to.m).padStart(2,'0');
+    document.getElementById('alarmTimeDisplay').textContent=ts;
     document.getElementById('alarmRow').classList.add('show');
     document.getElementById('alarmBadge').classList.add('show');
   }else{
@@ -703,43 +607,24 @@ function showRes(p){
   }
   document.getElementById('aiRes').classList.add('show');
 }
-
-function closeRes(e){
-  if(!e||e.target===document.getElementById('aiRes')){
-    document.getElementById('aiRes').classList.remove('show');pending=null;
-  }
-}
+function closeRes(e){if(!e||e.target===document.getElementById('aiRes')){document.getElementById('aiRes').classList.remove('show');pending=null;}}
 
 function addTask(){
   if(!pending)return;
   document.getElementById('aiRes').classList.remove('show');
   const p=pending,c=CM[p.category]||CM.business;
-  const timeObj=parseTimeFromText(p.time);
-  // Schedule alarm if time detected
-  if(timeObj){
-    const alarmDate=scheduleAlarm(p.task,timeObj);
-    if(alarmDate){
-      const hh=String(timeObj.h).padStart(2,'0');
-      const mm=String(timeObj.m).padStart(2,'0');
-      toast('⏰','התראה נקבעה!','תצלצל ב-'+hh+':'+mm);
-    }
-  }
-  const timeDisplay=timeObj?`<span class="ctime-alarm">⏰ ${String(timeObj.h).padStart(2,'0')}:${String(timeObj.m).padStart(2,'0')}</span>`:(p.time&&p.time!=='ללא זמן'?p.time:'ללא זמן');
-  renderCard({
-    id:'task_'+Date.now(),title:p.task,tagClass:c.c,tagLabel:c.l,
-    priority:p.priority||'normal',time:timeDisplay,
-    contact:p.contact||'ללא איש קשר',
-    initials:p.contact?p.contact.slice(0,2):'✦',
-    waMsg:p.whatsapp_msg||'',
-    category:p.category||'business'
-  },true);
+  const to=parseTime(p.time);
+  if(to)scheduleAlarm(p.task,to);
+  const timeDisp=to?`<span class="ctime-alarm">⏰ ${String(to.h).padStart(2,'0')}:${String(to.m).padStart(2,'0')}</span>`:(p.time&&p.time!=='ללא זמן'?p.time:'ללא זמן');
+  renderCard({id:'task_'+Date.now(),title:p.task,tagClass:c.c,tagLabel:c.l,priority:p.priority||'normal',time:timeDisp,contact:p.contact||'ללא איש קשר',initials:p.contact?p.contact.slice(0,2):'✦',waMsg:p.whatsapp_msg||'',category:p.category||'business'},true);
   document.getElementById('empty').classList.remove('show');
   updCnt();saveTasks();
-  if(!timeObj)toast('✅','נשמר!',p.task.slice(0,40));
+  if(to)toast('⏰','התראה נקבעה!','תצלצל ב-'+String(to.h).padStart(2,'0')+':'+String(to.m).padStart(2,'0'));
+  else toast('✅','נשמר!',p.task.slice(0,40));
   pending=null;
 }
 
-// ══ VOICE ══
+// VOICE
 function toggleRec(){if(!KEY){showSetup();return;}rec?stopRec():startRec();}
 function startRec(){
   rec=true;document.getElementById('rbtn').classList.add('listen');
@@ -749,12 +634,12 @@ function startRec(){
   if('webkitSpeechRecognition' in window||'SpeechRecognition' in window){
     const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
     recog=new SR();recog.lang='he-IL';recog.continuous=false;recog.interimResults=false;
-    let gotResult=false;
-    recog.onresult=e=>{gotResult=true;const t=e.results[0][0].transcript;stopRec();groq(t);};
+    let got=false;
+    recog.onresult=e=>{got=true;const t=e.results[0][0].transcript;stopRec();callAI(t);};
     recog.onerror=()=>{stopRec();toast('⚠️','לא שמעתי','נסה שוב או כתוב');};
-    recog.onend=()=>{if(rec&&!gotResult)stopRec();};
+    recog.onend=()=>{if(rec&&!got)stopRec();};
     recog.start();
-  }else{toast('⚠️','פתח ב-Chrome','Chrome תומך בזיהוי קול');setTimeout(stopRec,1500);}
+  }else{toast('⚠️','פתח ב-Chrome','');setTimeout(stopRec,1500);}
 }
 function stopRec(){
   rec=false;if(recog){try{recog.stop();}catch(e){}}
@@ -763,33 +648,23 @@ function stopRec(){
   document.getElementById('rsub').textContent='לחץ לדיבור';
   document.getElementById('wave').classList.remove('on');
 }
-function sendTxt(){const i=document.getElementById('ti'),t=i.value.trim();if(!t)return;i.value='';if(!KEY){showSetup();return;}groq(t);}
+function sendTxt(){const i=document.getElementById('ti'),t=i.value.trim();if(!t)return;i.value='';if(!KEY){showSetup();return;}callAI(t);}
 function done(btn){
-  const c=btn.closest('.card');
-  const id=c.dataset.id;
-  // Remove from all screens
-  document.querySelectorAll('[data-id="'+id+'"]').forEach(el=>{
-    el.classList.add('bye');
-    setTimeout(()=>el.remove(),320);
-  });
-  setTimeout(()=>{updCnt();updateCategoryCounts();saveTasks();},340);
+  const c=btn.closest('.card'),id=c.dataset.id;
+  document.querySelectorAll('[data-id="'+id+'"]').forEach(el=>{el.classList.add('bye');setTimeout(()=>el.remove(),320);});
+  setTimeout(()=>{updCnt();updateCatCounts();saveTasks();},340);
 }
-function updCnt(){
-  const n=document.querySelectorAll('#cards .card').length;
-  document.getElementById('cnt').textContent=n+' ממתינות';
-  if(n===0)document.getElementById('empty').classList.add('show');
-  else document.getElementById('empty').classList.remove('show');
-}
+function updCnt(){const n=document.querySelectorAll('#cards .card').length;document.getElementById('cnt').textContent=n+' ממתינות';document.getElementById('empty').className=n===0?'empty show':'empty';}
 function showC(to,msg){wa={to,msg};document.getElementById('cto').textContent='אל: '+to;document.getElementById('cbody').textContent=msg;document.getElementById('cov').classList.add('show');}
 function hideC(){document.getElementById('cov').classList.remove('show');}
 function sendWA(){window.open('https://wa.me/?text='+encodeURIComponent(wa.msg),'_blank');hideC();}
 function quickWA(name){wa={to:name,msg:'שלום '+name+', '};document.getElementById('cto').textContent='אל: '+name;document.getElementById('cbody').textContent='שלום '+name+', ';document.getElementById('cov').classList.add('show');}
 function quickCall(num){window.open('tel:'+num);}
-function swNav(screen){
+function swNav(s){
   document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));
-  document.getElementById('nav-'+screen).classList.add('active');
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('screen-'+screen).classList.add('active');
+  document.getElementById('nav-'+s).classList.add('active');
+  document.querySelectorAll('.screen').forEach(sc=>sc.classList.remove('active'));
+  document.getElementById('screen-'+s).classList.add('active');
 }
 let tt;function toast(i,t,s){clearTimeout(tt);document.getElementById('ticon').textContent=i;document.getElementById('ttl').textContent=t;document.getElementById('tsub').textContent=s;document.getElementById('toast').classList.add('show');tt=setTimeout(()=>document.getElementById('toast').classList.remove('show'),3500);}
 </script>
