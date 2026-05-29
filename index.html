@@ -3,39 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Beni OS</title>
+<title>Beni OS - בדיקה</title>
 <style>
-body{background:#080a0f;color:#e8ecf4;font-family:sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;gap:16px}
-input{width:100%;max-width:360px;padding:12px;background:#111620;border:1px solid #333;border-radius:10px;color:#fff;font-size:14px;direction:ltr}
-button{width:100%;max-width:360px;padding:14px;background:#2979ff;border:none;border-radius:10px;color:#fff;font-size:16px;cursor:pointer}
-#result{width:100%;max-width:360px;padding:12px;background:#111620;border-radius:10px;font-size:13px;min-height:60px;white-space:pre-wrap;word-break:break-all}
+body{background:#080a0f;color:#e8ecf4;font-family:sans-serif;display:flex;flex-direction:column;align-items:center;padding:20px;gap:12px}
+input{width:100%;max-width:360px;padding:12px;background:#111620;border:1px solid #333;border-radius:10px;color:#fff;font-size:13px;direction:ltr}
+button{width:100%;max-width:360px;padding:14px;background:#2979ff;border:none;border-radius:10px;color:#fff;font-size:15px;cursor:pointer;margin-bottom:4px}
+#result{width:100%;max-width:360px;padding:12px;background:#111620;border-radius:10px;font-size:11px;min-height:200px;white-space:pre-wrap;word-break:break-all;overflow-y:auto;max-height:400px}
 </style>
 </head>
 <body>
-<h2>🧪 בדיקת Gemini</h2>
-<input id="key" placeholder="הכנס מפתח Gemini כאן..." type="text">
-<button onclick="test()">בדוק חיבור</button>
-<div id="result">ממתין לבדיקה...</div>
+<h3>🔍 בדיקת Gemini</h3>
+<input id="key" placeholder="הכנס מפתח Gemini..." type="text">
+<button onclick="listModels()">📋 רשימת מודלים זמינים</button>
+<button onclick="testChat()">💬 בדוק שיחה</button>
+<div id="result">לחץ על כפתור לבדיקה...</div>
 <script>
-async function test() {
-  const key = document.getElementById('key').value.trim();
-  const res = document.getElementById('result');
-  if (!key) { res.textContent = 'הכנס מפתח קודם'; return; }
-  res.textContent = 'שולח בקשה...';
-  try {
-    const r = await fetch(
-      'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' + key,
-      {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({contents:[{parts:[{text:'say hello in hebrew'}]}]})
-      }
-    );
-    const text = await r.text();
-    res.textContent = 'STATUS: ' + r.status + '\n\n' + text.slice(0, 500);
-  } catch(e) {
-    res.textContent = 'ERROR: ' + e.message;
-  }
+function getKey(){ return document.getElementById('key').value.trim(); }
+function show(t){ document.getElementById('result').textContent = t; }
+
+async function listModels(){
+  const k = getKey();
+  if(!k){ show('הכנס מפתח קודם'); return; }
+  show('טוען רשימת מודלים...');
+  try{
+    const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models?key='+k);
+    const d = await r.json();
+    if(d.models){
+      const names = d.models.map(m=>m.name).join('\n');
+      show('מודלים זמינים:\n\n'+names);
+    } else {
+      show(JSON.stringify(d,null,2));
+    }
+  }catch(e){ show('ERROR: '+e.message); }
+}
+
+async function testChat(){
+  const k = getKey();
+  if(!k){ show('הכנס מפתח קודם'); return; }
+  show('שולח בקשה...');
+  // Try v1 instead of v1beta
+  try{
+    const r = await fetch('https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key='+k,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({contents:[{parts:[{text:'say hello'}]}]})
+    });
+    const t = await r.text();
+    show('v1/gemini-1.5-flash:\nSTATUS: '+r.status+'\n\n'+t.slice(0,400));
+  }catch(e){ show('ERROR: '+e.message); }
 }
 </script>
 </body>
