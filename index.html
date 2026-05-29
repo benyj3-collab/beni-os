@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Beni OS</title>
+<style>
+body{background:#080a0f;color:#e8ecf4;font-family:sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;gap:16px}
+input{width:100%;max-width:360px;padding:12px;background:#111620;border:1px solid #333;border-radius:10px;color:#fff;font-size:14px;direction:ltr}
+button{width:100%;max-width:360px;padding:14px;background:#2979ff;border:none;border-radius:10px;color:#fff;font-size:16px;cursor:pointer}
+#result{width:100%;max-width:360px;padding:12px;background:#111620;border-radius:10px;font-size:13px;min-height:60px;white-space:pre-wrap;word-break:break-all}
+</style>
+</head>
+<body>
+<h2>🧪 בדיקת Gemini</h2>
+<input id="key" placeholder="הכנס מפתח Gemini כאן..." type="text">
+<button onclick="test()">בדוק חיבור</button>
+<div id="result">ממתין לבדיקה...</div>
+<script>
+async function test() {
+  const key = document.getElementById('key').value.trim();
+  const res = document.getElementById('result');
+  if (!key) { res.textContent = 'הכנס מפתח קודם'; return; }
+  res.textContent = 'שולח בקשה...';
+  try {
+    const r = await fetch(
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + key,
+      {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({contents:[{parts:[{text:'say hello in hebrew'}]}]})
+      }
+    );
+    const text = await r.text();
+    res.textContent = 'STATUS: ' + r.status + '\n\n' + text.slice(0, 500);
+  } catch(e) {
+    res.textContent = 'ERROR: ' + e.message;
+  }
+}
+</script>
+</body>
+</html>
