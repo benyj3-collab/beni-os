@@ -629,7 +629,6 @@ urgent=דחוף/מיד/היום, warning=מחר/השבוע, normal=שאר`;
     }
 
     const d=JSON.parse(responseText);
-    toast("🔍","debug",JSON.stringify(d).slice(0,80));
     // Extract text safely
     let raw='';
     if(d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts&&d.candidates[0].content.parts[0]){
